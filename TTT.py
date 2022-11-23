@@ -71,10 +71,13 @@ def laudWinner(winner):
     else:
       initGame()
 
-initGame()
+def main():
+  initGame()
 
-while keepPlaying:
-  cls()
-  printBoard()
-  inputAndChange()
-  checkIfWinner()
+  while keepPlaying:
+    cls()
+    printBoard()
+    inputAndChange()
+    checkIfWinner()
+
+main()
