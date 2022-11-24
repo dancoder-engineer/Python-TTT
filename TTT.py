@@ -32,22 +32,11 @@ def switchTurn():
     whoseTurn = "X"
 
 def checkIfWinner():
-  if (board[0] == board[1] == board[2]):
-    laudWinner(board[0])
-  if (board[3] == board[4] == board[5]):
-    laudWinner(board[3])
-  if (board[6] == board[7] == board[8]):
-    laudWinner(board[6])
-  if (board[0] == board[3] == board[6]):
-    laudWinner(board[0])
-  if (board[1] == board[4] == board[7]):
-    laudWinner(board[1])
-  if (board[2] == board[5] == board[8]):
-    laudWinner(board[2])
-  if (board[0] == board[4] == board[8]):
-    laudWinner(board[0])
-  if (board[2] == board[4] == board[6]):
-    laudWinner(board[2])
+  winningstates = ["012", "345", "678", "036", "147", "258", "048", "246"]
+  for i in winningstates:
+    if (board[int(i[0])] == board[int(i[1])] == board[int(i[2])]):
+      laudWinner(board[int(i[0])])
+
     
 def inputAndChange():
   global board
@@ -63,7 +52,7 @@ def inputAndChange():
 def laudWinner(winner):
   global keepPlaying
   print("Congratulations, " + winner + ", you win!")
-  morePrompt = "9"
+  morePrompt = ""
   while morePrompt != "Y" and morePrompt != "N":
     morePrompt = input ("Do you wish to play again? Y/N: ")
     if morePrompt == "N":
