@@ -36,8 +36,29 @@ def checkIfWinner():
   for i in winningstates:
     if (board[int(i[0])] == board[int(i[1])] == board[int(i[2])]):
       laudWinner(board[int(i[0])])
+  tie = True
+  for i in board:
+    if i != "X" and i != "O":
+        tie = False
+  if not tie:
+    return 0
+  else:
+    youTied()
 
-    
+def askIfAgain():
+  global keepPlaying
+  morePrompt = ""
+  while morePrompt != "Y" and morePrompt != "N":
+    morePrompt = input ("Do you wish to play again? Y/N: ")
+    if morePrompt == "N":
+      keepPlaying = False
+    else:
+      initGame()
+
+def youTied():
+    print("The game is a tie.")
+    askIfAgain()
+
 def inputAndChange():
   global board
   inputWhere = input("Where do you wish to go, " + whoseTurn + ": ")
@@ -50,15 +71,8 @@ def inputAndChange():
   switchTurn()
 
 def laudWinner(winner):
-  global keepPlaying
   print("Congratulations, " + winner + ", you win!")
-  morePrompt = ""
-  while morePrompt != "Y" and morePrompt != "N":
-    morePrompt = input ("Do you wish to play again? Y/N: ")
-    if morePrompt == "N":
-      keepPlaying = False
-    else:
-      initGame()
+  askIfAgain()
 
 def main():
   initGame()
